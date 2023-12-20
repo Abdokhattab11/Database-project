@@ -28,15 +28,18 @@ const removeExistTable = () => {
   }
 };
 
-emplyeesTableBtn.addEventListener("click", () => {
+emplyeesTableBtn.addEventListener("click", async () => {
+  console.log(await fetch_table_data("Authors"));
   removeExistTable();
   allTables[0].classList.add("active__table");
 });
-projectsTableBtn.addEventListener("click", () => {
+projectsTableBtn.addEventListener("click", async () => {
+  console.log(await fetch_table_data("Books"));
   removeExistTable();
   allTables[1].classList.add("active__table");
 });
-teamsTableBtn.addEventListener("click", () => {
+teamsTableBtn.addEventListener("click", async () => {
+  console.log(await fetch_table_data("Writes"));
   removeExistTable();
   allTables[2].classList.add("active__table");
 });
