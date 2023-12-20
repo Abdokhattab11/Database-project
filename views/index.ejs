@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/all.min.css" />
+    <script src="scripts/script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">DataBase Project</h1>
+    </header>
+    <main class="main">
+      <nav class="main__nav">
+        <ul class="nav__list">
+          <li class="nav__item" id="emplyees-a">
+            <form action="/result" method="post">
+              <button class="emplyees-btn nav-btn" name="fetch" value="Employees">Employees</button>
+            </form>
+          </li>
+          <li class="nav__item" id="projects-a">
+            <form action="/result" method="post">
+              <button class="emplyees-btn nav-btn" name="fetch" value="Projects">Projects</button>
+            </form>
+          </li>
+          <li class="nav__item" id="teams-a">
+            <form action="/result" method="post">
+              <button class="emplyees-btn nav-btn" name="fetch" value="Teams">Teams</button>
+            </form>
+          </li>
+          <li class="nav__item" id="tasks-a">
+            <form action="/result" method="post">
+              <button class="emplyees-btn nav-btn" name="fetch" value="Tasks">Tasks</button>
+            </form>
+          </li>
+          <li class="nav__item" id="custom-a">
+            <form action="/result" method="post">
+              <button class="emplyees-btn nav-btn" name="fetch" value="Custom">Custom</button>
+            </form>
+          </li>
+        </ul>
+      </nav>
+      <section class="main__show-area">
+        <div class="default__table__container active__table">
+          <h1>NO SELECTED DATA</h1>
+        </div>
+        <div class="table__container project__table">
+          <form action="#" class="filter__form" id="filter__project">
+            <div class="filter__from-input">
+              <label>Filter Data</label>
+              <input
+                id="filter-project"
+                type="text"
+                placeholder="Enter Condition" />
+            </div>
+            <button class="filter__form-btn">Get Data</button>
+          </form>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Team ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <form class="add__form"></form>
+        </div>
+
+        <div class="table__container project__table">
+          <form action="#" class="filter__form" id="filter__project">
+            <div class="filter__from-input">
+              <label>Filter Data</label>
+              <input
+                id="filter-project"
+                type="text"
+                placeholder="Enter Condition" />
+            </div>
+            <button class="filter__form-btn">Get Data</button>
+          </form>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Deadline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 4</td>
+
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <form class="add__form"></form>
+        </div>
+        <div class="table__container project__table">
+          <form action="#" class="filter__form" id="filter__project">
+            <div class="filter__from-input">
+              <label>Filter Data</label>
+              <input
+                id="filter-project"
+                type="text"
+                placeholder="Enter Condition" />
+            </div>
+            <button class="filter__form-btn">Get Data</button>
+          </form>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Manager</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <form class="add__form"></form>
+        </div>
+        <div class="table__container project__table">
+          <form action="#" class="filter__form" id="filter__project">
+            <div class="filter__from-input">
+              <label>Filter Data</label>
+              <input
+                id="filter-project"
+                type="text"
+                placeholder="Enter Condition" />
+            </div>
+            <button class="filter__form-btn">Get Data</button>
+          </form>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Deadline</th>
+                <th>Project ID</th>
+                <th>Team ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>
+                  <button class="del-btn">
+                    <i class="fa-solid fa-trash trash-icon"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <form class="add__form"></form>
+        </div>
+        <div class="table__container project__table">
+          <form action="#" class="filter__form" id="filter__project">
+            <div class="filter__from-input">
+              <label>Enter SQL query</label>
+              <input id="filter-project" type="text" placeholder="Query" />
+            </div>
+            <button class="filter__form-btn">Get Data</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="scripts/all.min.js"></script>
+  </body>
+</html>
