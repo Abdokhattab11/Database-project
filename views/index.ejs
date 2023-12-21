@@ -41,16 +41,16 @@
         <div class="default__table__container active__table">
           <h1>NO SELECTED DATA</h1>
         </div>
-        <div class="table__container project__table">
-          <form action="#" class="filter__form" id="filter__project">
+        <!-- Empoyee Table -->
+        <div class="table__container">
+          <form action="#" class="filter__form" id="filter-empolyee">
             <div class="filter__from-input">
               <label>Filter Data</label>
-              <input
-                id="filter-project"
-                type="text"
-                placeholder="Enter Condition" />
+              <input type="text" placeholder="Enter Condition" />
             </div>
-            <button class="filter__form-btn">Get Data</button>
+            <button class="filter__form-btn" id="filter-empolyee-btn">
+              Get Data
+            </button>
           </form>
           <table>
             <thead>
@@ -66,17 +66,16 @@
           </table>
           <form class="add__form"></form>
         </div>
-
-        <div class="table__container project__table">
-          <form action="#" class="filter__form" id="filter__project">
+        <!-- Project table -->
+        <div class="table__container">
+          <form action="#" class="filter__form" id="filter-project">
             <div class="filter__from-input">
               <label>Filter Data</label>
-              <input
-                id="filter-project"
-                type="text"
-                placeholder="Enter Condition" />
+              <input type="text" placeholder="Enter Condition" />
             </div>
-            <button class="filter__form-btn">Get Data</button>
+            <button class="filter__form-btn" id="filter-project-btn">
+              Get Data
+            </button>
           </form>
           <table>
             <thead>
@@ -92,16 +91,16 @@
           </table>
           <form class="add__form"></form>
         </div>
-        <div class="table__container project__table">
-          <form action="#" class="filter__form" id="filter__project">
+        <!-- Team table -->
+        <div class="table__container">
+          <form action="#" class="filter__form" id="filter-team">
             <div class="filter__from-input">
               <label>Filter Data</label>
-              <input
-                id="filter-project"
-                type="text"
-                placeholder="Enter Condition" />
+              <input type="text" placeholder="Enter Condition" />
             </div>
-            <button class="filter__form-btn">Get Data</button>
+            <button class="filter__form-btn" id="filter-team-btn">
+              Get Data
+            </button>
           </form>
           <table>
             <thead>
@@ -115,16 +114,16 @@
           </table>
           <form class="add__form"></form>
         </div>
-        <div class="table__container project__table">
-          <form action="#" class="filter__form" id="filter__project">
+        <!-- Task table -->
+        <div class="table__container">
+          <form action="#" class="filter__form" id="filter-task">
             <div class="filter__from-input">
               <label>Filter Data</label>
-              <input
-                id="filter-project"
-                type="text"
-                placeholder="Enter Condition" />
+              <input type="text" placeholder="Enter Condition" />
             </div>
-            <button class="filter__form-btn">Get Data</button>
+            <button class="filter__form-btn" id="filter-task-btn">
+              Get Data
+            </button>
           </form>
           <table>
             <thead>
@@ -140,13 +139,16 @@
           </table>
           <form class="add__form"></form>
         </div>
-        <div class="table__container project__table">
-          <form action="#" class="filter__form" id="filter__project">
+        <!-- Custum table -->
+        <div class="table__container">
+          <form action="#" class="filter__form" id="filter-customForm">
             <div class="filter__from-input">
               <label>Enter SQL query</label>
               <input id="filter-project" type="text" placeholder="Query" />
             </div>
-            <button class="filter__form-btn">Get Data</button>
+            <button class="filter__form-btn" id="filter-custom-btn">
+              Get Data
+            </button>
           </form>
         </div>
       </section>

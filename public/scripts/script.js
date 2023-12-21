@@ -15,12 +15,26 @@ const defaultTableDisplay = document.querySelector(
   ".default__table__container"
 );
 const allTables = document.querySelectorAll(".table__container");
-
+// Select Anker tags for displaying Tables
 const emplyeesTableBtn = document.getElementById("emplyees-a");
 const projectsTableBtn = document.getElementById("projects-a");
 const teamsTableBtn = document.getElementById("teams-a");
 const tasksTableBtn = document.getElementById("tasks-a");
 const customTableBtn = document.getElementById("custom-a");
+// Select Form
+const emplyeesForm = document.getElementById("filter-empolyee");
+const projectForm = document.getElementById("filter-project");
+const teamForm = document.getElementById("filter-team");
+const taskForm = document.getElementById("filter-task");
+const customForm = document.getElementById("filter-customForm");
+// Get Btn for Filter
+const emplyeesFilterBtn = document.getElementById("filter-empolyee-btn");
+const projectFilterBtn = document.getElementById("filter-project-btn");
+const teamFilterBtn = document.getElementById("filter-team-btn");
+const taskFilterBtn = document.getElementById("filter-task-btn");
+const customFilterBtn = document.getElementById("filter-customForm-btn");
+
+// This Function remove the displayed Table
 const removeExistTable = () => {
   if (defaultTableDisplay.classList.contains("active__table"))
     defaultTableDisplay.classList.remove("active__table");
@@ -29,7 +43,7 @@ const removeExistTable = () => {
       t.classList.remove("active__table");
   }
 };
-
+// Add Event listener to Anker btns to display tables
 emplyeesTableBtn.addEventListener("click", async () => {
   const obj = await fetch_table_data("Employee");
   const list = obj["list"];
@@ -101,4 +115,10 @@ tasksTableBtn.addEventListener("click", async () => {
 customTableBtn.addEventListener("click", async () => {
   removeExistTable();
   allTables[4].classList.add("active__table");
+});
+
+// Event
+emplyeesFilterBtn.addEventListener("click", () => {
+  // Asume cond is alwayse valid
+  const cond = emplyeesForm.querySelector("input").value;
 });
