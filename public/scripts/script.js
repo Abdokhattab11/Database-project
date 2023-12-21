@@ -1,6 +1,6 @@
 async function fetch_table_data(table_name) {
   const table_data = await (
-    await fetch("/result", {
+    await fetch("/result_table", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -11,6 +11,21 @@ async function fetch_table_data(table_name) {
   return table_data;
 }
 
+async function fetch_filter_data(table_name, filter_condition) {
+  const table_data = await (
+    await fetch("/result_filter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        table: table_name,
+        condition:  filter_condition
+      }),
+    })
+  ).json();
+  return table_data;
+}
 const defaultTableDisplay = document.querySelector(
   ".default__table__container"
 );
@@ -118,7 +133,12 @@ customTableBtn.addEventListener("click", async () => {
 });
 
 // Event
-emplyeesFilterBtn.addEventListener("click", () => {
-  // Asume cond is alwayse valid
+emplyeesForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+});
+
+emplyeesFilterBtn.addEventListener("click", async (e) => {
   const cond = emplyeesForm.querySelector("input").value;
+  console.log(await fetch_filter_data("employee", cond));
+  e.preventDefault();
 });

@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const pool = new sql.ConnectionPool({
   database: "ProjectManagement",
-  server: "DESKTOP-OTMR5M4",
+  server: "DESKTOP-UT15SN3\\MSSQLSERVER01",
   driver: "msnodesqlv8",
   options: {
     trustedConnection: true,
@@ -22,15 +22,24 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-app.post("/result", (req, res) => {
-  console.log(req.body);
+app.post("/result_table", (req, res) => {
   pool.connect().then(() => {
-    //simple query
     pool.request().query(`select * from ${req.body.fetch}`, (err, result) => {
-      console.dir(result);
       let list_result = result["recordset"];
       res.json({
-        keys: Object.keys(list_result[0]),
+        list: list_result,
+      });
+    });
+  });
+});
+
+app.post("/result_filter", (req, res) => {
+  console.log(req.body);
+  pool.connect().then(() => {
+    pool.request().query(`select * from ${req.body.table} where ${req.body.condition}`, (err, result) => {
+      console.log(result);
+      let list_result = result["recordset"];
+      res.json({
         list: list_result,
       });
     });
