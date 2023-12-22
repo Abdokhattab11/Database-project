@@ -41,15 +41,17 @@ async function delete_row(table_name, id_row) {
 }
 
 async function fetch_custom_data(query) {
-  const table_data = await(await fetch("/result_custom", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: query
-    }),
-  })).json();
+  const table_data = await (
+    await fetch("result_custom", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: query
+      }),
+    })
+  ).json();
   return table_data;
 }
 const defaultTableDisplay = document.querySelector(

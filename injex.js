@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const pool = new sql.ConnectionPool({
   database: "ProjectManagement",
-  server: "DESKTOP-OTMR5M4",
+  server: "DESKTOP-UT15SN3\MSSQLSERVER01",
   driver: "msnodesqlv8",
   options: {
     trustedConnection: true,
