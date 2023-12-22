@@ -33,9 +33,9 @@ async function delete_row(table_name, id_row) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       table: table_name,
-      id:  id_row
+      id: id_row,
     }),
   });
 }
@@ -75,13 +75,14 @@ const removeExistTable = () => {
 // This Function addeventlistener to delete buttons
 const addEventListenerButtons = (tableName) => {
   const deleteButtons = Array.from(document.getElementsByClassName("del-btn"));
-  deleteButtons.forEach(button => {
+  deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      idOfDeletedElement = e.currentTarget.parentElement.parentElement.children[0].innerText;
+      idOfDeletedElement =
+        e.currentTarget.parentElement.parentElement.children[0].innerText;
       delete_row(tableName, idOfDeletedElement);
-    })
+    });
   });
-}
+};
 // Add Event listener to Anker btns to display tables
 emplyeesTableBtn.addEventListener("click", async () => {
   const obj = await fetch_table_data("Employee");
@@ -93,7 +94,6 @@ emplyeesTableBtn.addEventListener("click", async () => {
     for (const j in list[i]) {
       newHtml += `<td>${list[i][j]}</td>`;
     }
-
     html += `<tr>${newHtml} <td><button class="del-btn"><i class="fa-solid fa-trash trash-icon"></i></button></td></tr>`;
   }
   emplyeeTable.innerHTML = html;
@@ -188,6 +188,7 @@ emplyeesFilterBtn.addEventListener("click", async (e) => {
   }
   emplyeeTable.innerHTML = html;
   e.preventDefault();
+  addEventListenerButtons("Employee");
 });
 
 projectFilterBtn.addEventListener("click", async (e) => {
@@ -204,6 +205,7 @@ projectFilterBtn.addEventListener("click", async (e) => {
   }
   projectTable.innerHTML = html;
   e.preventDefault();
+  addEventListenerButtons("Project");
 });
 
 teamFilterBtn.addEventListener("click", async (e) => {
@@ -220,6 +222,7 @@ teamFilterBtn.addEventListener("click", async (e) => {
   }
   teamTable.innerHTML = html;
   e.preventDefault();
+  addEventListenerButtons("Team");
 });
 
 taskFilterBtn.addEventListener("click", async (e) => {
@@ -236,5 +239,5 @@ taskFilterBtn.addEventListener("click", async (e) => {
   }
   taskTable.innerHTML = html;
   e.preventDefault();
+  addEventListenerButtons("Task");
 });
-
