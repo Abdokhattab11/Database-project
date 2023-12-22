@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 const pool = new sql.ConnectionPool({
   database: "ProjectManagement",
-  server: "DESKTOP-OTMR5M4",
+  server: "DESKTOP-UT15SN3\\MSSQLSERVER01",
   driver: "msnodesqlv8",
   options: {
     trustedConnection: true,
@@ -54,15 +54,9 @@ app.post("/result_filter", (req, res) => {
 
 app.delete("/delete_row", (req, res) => {
   console.log(req.body);
-  // pool.connect().then(() => {
-  //   pool.request().query(`select * from ${req.body.table} where ${req.body.condition}`, (err, result) => {
-  //     console.log(result);
-  //     let list_result = result["recordset"];
-  //     res.json({
-  //       list: list_result,
-  //     });
-  //   });
-  // });
+  pool.connect().then(() => {
+    pool.request().query(`delete from ${req.body.table} where id = ${req.body.id}`);
+  });
   res.status(200).send("The row has been deleted")
 });
 

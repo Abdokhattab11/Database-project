@@ -77,8 +77,7 @@ const addEventListenerButtons = (tableName) => {
   const deleteButtons = Array.from(document.getElementsByClassName("del-btn"));
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      idOfDeletedElement =
-        e.currentTarget.parentElement.parentElement.children[0].innerText;
+      idOfDeletedElement = e.currentTarget.parentElement.parentElement.children[0].innerText;
       delete_row(tableName, idOfDeletedElement);
     });
   });
