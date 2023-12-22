@@ -181,3 +181,12 @@ td:last-child {
   color: inherit;
   font-weight: 300;
 }
+#filter-sql-code-input {
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
+  width: 70rem;
+  height: 8rem;
+}
+#filter-sql-code-input:focus {
+  box-shadow: 0.2rem 0rem 1rem var(--main-color-light);
+}

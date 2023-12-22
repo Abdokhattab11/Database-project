@@ -2,7 +2,6 @@ import sql from "mssql/msnodesqlv8.js";
 import express from "express";
 import bodyParser from "body-parser";
 
-
 const port = 8000;
 const app = express();
 
@@ -12,7 +11,7 @@ app.use(bodyParser.json());
 
 const pool = new sql.ConnectionPool({
   database: "ProjectManagement",
-  server: "DESKTOP-UT15SN3\\MSSQLSERVER01",
+  server: "DESKTOP-OTMR5M4",
   driver: "msnodesqlv8",
   options: {
     trustedConnection: true,
@@ -55,9 +54,11 @@ app.post("/result_filter", (req, res) => {
 app.delete("/delete_row", (req, res) => {
   console.log(req.body);
   pool.connect().then(() => {
-    pool.request().query(`delete from ${req.body.table} where id = ${req.body.id}`);
+    pool
+      .request()
+      .query(`delete from ${req.body.table} where id = ${req.body.id}`);
   });
-  res.status(200).send("The row has been deleted")
+  res.status(200).send("The row has been deleted");
 });
 
 app.listen(port, (req, res) => {

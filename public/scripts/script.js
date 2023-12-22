@@ -77,8 +77,22 @@ const addEventListenerButtons = (tableName) => {
   const deleteButtons = Array.from(document.getElementsByClassName("del-btn"));
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      idOfDeletedElement = e.currentTarget.parentElement.parentElement.children[0].innerText;
+      idOfDeletedElement =
+        e.currentTarget.parentElement.parentElement.children[0].innerText;
       delete_row(tableName, idOfDeletedElement);
+      // WE need to remove the Element from the DOM
+      const dict = { Employee: 0, Project: 1, Team: 2, Task: 3 };
+      const emplyeeTable =
+        allTables[dict[tableName]].querySelector("table tbody");
+      const arrOfTr = emplyeeTable.querySelectorAll("tr");
+      for (const row of arrOfTr) {
+        const value = row.firstElementChild.textContent;
+        console.log(value);
+        if (value === idOfDeletedElement) {
+          row.remove();
+          break;
+        }
+      }
     });
   });
 };
@@ -239,4 +253,7 @@ taskFilterBtn.addEventListener("click", async (e) => {
   taskTable.innerHTML = html;
   e.preventDefault();
   addEventListenerButtons("Task");
+});
+customFilterBtn.addEventListener("click", () => {
+  const input = customForm.querySelector("textarea").value;
 });
