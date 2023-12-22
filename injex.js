@@ -61,6 +61,23 @@ app.delete("/delete_row", (req, res) => {
   res.status(200).send("The row has been deleted");
 });
 
+app.post("/result_custom", (req, res) => {
+  console.log(req.body);
+  // pool.connect().then(() => {
+  //   pool
+  //     .request()
+  //     .query(
+  //       `select * from ${req.body.table} where ${req.body.condition}`,
+  //       (err, result) => {
+  //         console.log(result);
+  //         let list_result = result["recordset"];
+  //         res.json({
+  //           list: list_result,
+  //         });
+  //       }
+  //     );
+  // });
+});
 app.listen(port, (req, res) => {
   console.log(`server is running on port ${port}`);
 });

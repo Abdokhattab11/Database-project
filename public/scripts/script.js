@@ -39,6 +39,19 @@ async function delete_row(table_name, id_row) {
     }),
   });
 }
+
+async function fetch_custom_data(query) {
+  const table_data = await(await fetch("/result_custom", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: query
+    }),
+  })).json();
+  return table_data;
+}
 const defaultTableDisplay = document.querySelector(
   ".default__table__container"
 );
@@ -254,6 +267,7 @@ taskFilterBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   addEventListenerButtons("Task");
 });
-customFilterBtn.addEventListener("click", () => {
+customFilterBtn.addEventListener("click", async () => {
   const input = customForm.querySelector("textarea").value;
+  await fetch_custom_data(input)
 });
