@@ -75,7 +75,7 @@ const emplyeesFilterBtn = document.getElementById("filter-empolyee-btn");
 const projectFilterBtn = document.getElementById("filter-project-btn");
 const teamFilterBtn = document.getElementById("filter-team-btn");
 const taskFilterBtn = document.getElementById("filter-task-btn");
-const customFilterBtn = document.getElementById("filter-customForm-btn");
+const customFilterBtn = document.getElementById("filter-custom-btn");
 
 // This Function remove the displayed Table
 const removeExistTable = () => {
@@ -201,6 +201,9 @@ teamForm.addEventListener("submit", async (e) => {
 taskForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 });
+customForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+});
 
 emplyeesFilterBtn.addEventListener("click", async (e) => {
   const cond = emplyeesForm.querySelector("input").value;
@@ -269,7 +272,8 @@ taskFilterBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   addEventListenerButtons("Task");
 });
-customFilterBtn.addEventListener("click", async () => {
+customFilterBtn.addEventListener("click", async (e) => {
   const input = customForm.querySelector("textarea").value;
-  await fetch_custom_data(input)
+  console.log(await fetch_custom_data(input));
+  e.preventDefault();
 });
