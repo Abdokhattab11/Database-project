@@ -48,7 +48,7 @@ async function fetch_custom_data(query) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: query
+        query: query,
       }),
     })
   ).json();
@@ -274,6 +274,25 @@ taskFilterBtn.addEventListener("click", async (e) => {
 });
 customFilterBtn.addEventListener("click", async (e) => {
   const input = customForm.querySelector("textarea").value;
-  console.log(await fetch_custom_data(input));
+  const obj = await fetch_custom_data(input);
+  const customTableHead = allTables[4].querySelector("table thead");
+  const customTablebody = allTables[4].querySelector("table tbody");
+  let html = ``,
+    newHtml = ``;
+  obj.keys.map((key) => {
+    key === "id" ? (key = "ID") : (key = key[0].toUpperCase() + key.slice(1));
+    newHtml += `<th>${key}</th>`;
+  });
+  html += `<tr>${newHtml}</tr>`;
+  customTableHead.innerHTML = html;
+  (html = ``), (newHtml = ``);
+  for (let i = 0; i < obj["list"].length; i++) {
+    let newHtml = ``;
+    for (const j in obj["list"][i]) {
+      newHtml += `<td>${obj["list"][i][j]}</td>`;
+    }
+    html += `<tr>${newHtml}</tr>`;
+  }
+  customTablebody.innerHTML = html;
   e.preventDefault();
 });

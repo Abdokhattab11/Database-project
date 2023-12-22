@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const pool = new sql.ConnectionPool({
   database: "ProjectManagement",
-  server: "DESKTOP-UT15SN3\\MSSQLSERVER01",
+  server: "DESKTOP-SOQ26J8",
   driver: "msnodesqlv8",
   options: {
     trustedConnection: true,
@@ -64,16 +64,13 @@ app.delete("/delete_row", (req, res) => {
 app.post("/result_custom", (req, res) => {
   console.log(req.body);
   pool.connect().then(() => {
-    pool
-      .request()
-      .query(`${req.body.query}`,(err, result) => {
-          let list_result = result["recordset"];
-          res.json({
-            keys: Object.keys(list_result[0]),
-            list: list_result
-          });
-        }
-      );
+    pool.request().query(`${req.body.query}`, (err, result) => {
+      let list_result = result["recordset"];
+      res.json({
+        keys: Object.keys(list_result[0]),
+        list: list_result,
+      });
+    });
   });
 });
 app.listen(port, (req, res) => {
