@@ -2,6 +2,7 @@ import sql from "mssql/msnodesqlv8.js";
 import express from "express";
 import bodyParser from "body-parser";
 
+
 const port = 8000;
 const app = express();
 
@@ -44,6 +45,20 @@ app.post("/result_filter", (req, res) => {
       });
     });
   });
+});
+
+app.delete("/delete_row", (req, res) => {
+  console.log(req.body);
+  // pool.connect().then(() => {
+  //   pool.request().query(`select * from ${req.body.table} where ${req.body.condition}`, (err, result) => {
+  //     console.log(result);
+  //     let list_result = result["recordset"];
+  //     res.json({
+  //       list: list_result,
+  //     });
+  //   });
+  // });
+  res.status(200).send("The row has been deleted")
 });
 
 app.listen(port, (req, res) => {

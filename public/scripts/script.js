@@ -1,6 +1,6 @@
 async function fetch_table_data(table_name) {
   const table_data = await (
-    await fetch("/result_table", {
+    await fetch("result_table", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +13,7 @@ async function fetch_table_data(table_name) {
 
 async function fetch_filter_data(table_name, filter_condition) {
   const table_data = await (
-    await fetch("/result_filter", {
+    await fetch("result_filter", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +25,19 @@ async function fetch_filter_data(table_name, filter_condition) {
     })
   ).json();
   return table_data;
+}
+
+async function delete_row(table_name, id_row) {
+  await fetch("delete_row", {
+    method: "delete",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ 
+      table: table_name,
+      id:  id_row
+    }),
+  });
 }
 const defaultTableDisplay = document.querySelector(
   ".default__table__container"
@@ -58,6 +71,17 @@ const removeExistTable = () => {
       t.classList.remove("active__table");
   }
 };
+
+// This Function addeventlistener to delete buttons
+const addEventListenerButtons = (tableName) => {
+  const deleteButtons = Array.from(document.getElementsByClassName("del-btn"));
+  deleteButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      idOfDeletedElement = e.currentTarget.parentElement.parentElement.children[0].innerText;
+      delete_row(tableName, idOfDeletedElement);
+    })
+  });
+}
 // Add Event listener to Anker btns to display tables
 emplyeesTableBtn.addEventListener("click", async () => {
   const obj = await fetch_table_data("Employee");
@@ -75,6 +99,7 @@ emplyeesTableBtn.addEventListener("click", async () => {
   emplyeeTable.innerHTML = html;
   removeExistTable();
   allTables[0].classList.add("active__table");
+  addEventListenerButtons("Employee");
 });
 projectsTableBtn.addEventListener("click", async () => {
   const obj = await fetch_table_data("Project");
@@ -92,6 +117,7 @@ projectsTableBtn.addEventListener("click", async () => {
   emplyeeTable.innerHTML = html;
   removeExistTable();
   allTables[1].classList.add("active__table");
+  addEventListenerButtons("Project");
 });
 teamsTableBtn.addEventListener("click", async () => {
   const obj = await fetch_table_data("Team");
@@ -109,6 +135,7 @@ teamsTableBtn.addEventListener("click", async () => {
   emplyeeTable.innerHTML = html;
   removeExistTable();
   allTables[2].classList.add("active__table");
+  addEventListenerButtons("Team");
 });
 tasksTableBtn.addEventListener("click", async () => {
   const obj = await fetch_table_data("Task");
@@ -126,6 +153,7 @@ tasksTableBtn.addEventListener("click", async () => {
   emplyeeTable.innerHTML = html;
   removeExistTable();
   allTables[3].classList.add("active__table");
+  addEventListenerButtons("Task");
 });
 customTableBtn.addEventListener("click", async () => {
   removeExistTable();
@@ -142,3 +170,4 @@ emplyeesFilterBtn.addEventListener("click", async (e) => {
   console.log(await fetch_filter_data("employee", cond));
   e.preventDefault();
 });
+
