@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 const pool = new sql.ConnectionPool({
   database: "ProjectManagement",
-  server: "DESKTOP-UT15SN3\\MSSQLSERVER01",
+  server: "DESKTOP-OTMR5M4",
   driver: "msnodesqlv8",
   options: {
     trustedConnection: true,
@@ -37,13 +37,18 @@ app.post("/result_table", (req, res) => {
 app.post("/result_filter", (req, res) => {
   console.log(req.body);
   pool.connect().then(() => {
-    pool.request().query(`select * from ${req.body.table} where ${req.body.condition}`, (err, result) => {
-      console.log(result);
-      let list_result = result["recordset"];
-      res.json({
-        list: list_result,
-      });
-    });
+    pool
+      .request()
+      .query(
+        `select * from ${req.body.table} where ${req.body.condition}`,
+        (err, result) => {
+          console.log(result);
+          let list_result = result["recordset"];
+          res.json({
+            list: list_result,
+          });
+        }
+      );
   });
 });
 

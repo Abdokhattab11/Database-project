@@ -18,9 +18,9 @@ async function fetch_filter_data(table_name, filter_condition) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         table: table_name,
-        condition:  filter_condition
+        condition: filter_condition,
       }),
     })
   ).json();
@@ -164,10 +164,77 @@ customTableBtn.addEventListener("click", async () => {
 emplyeesForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 });
+projectForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+});
+teamForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+});
+taskForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+});
 
 emplyeesFilterBtn.addEventListener("click", async (e) => {
   const cond = emplyeesForm.querySelector("input").value;
-  console.log(await fetch_filter_data("employee", cond));
+  const obj = await fetch_filter_data("employee", cond);
+  const emplyeeTable = allTables[0].querySelector("table tbody");
+  let html = ``;
+  for (let i = 0; i < obj["list"].length; i++) {
+    let newHtml = ``;
+    for (const j in obj["list"][i]) {
+      newHtml += `<td>${obj["list"][i][j]}</td>`;
+    }
+    html += `<tr>${newHtml} <td><button class="del-btn"><i class="fa-solid fa-trash trash-icon"></i></button></td></tr>`;
+  }
+  emplyeeTable.innerHTML = html;
+  e.preventDefault();
+});
+
+projectFilterBtn.addEventListener("click", async (e) => {
+  const cond = projectForm.querySelector("input").value;
+  const obj = await fetch_filter_data("project", cond);
+  const projectTable = allTables[1].querySelector("table tbody");
+  let html = ``;
+  for (let i = 0; i < obj["list"].length; i++) {
+    let newHtml = ``;
+    for (const j in obj["list"][i]) {
+      newHtml += `<td>${obj["list"][i][j]}</td>`;
+    }
+    html += `<tr>${newHtml} <td><button class="del-btn"><i class="fa-solid fa-trash trash-icon"></i></button></td></tr>`;
+  }
+  projectTable.innerHTML = html;
+  e.preventDefault();
+});
+
+teamFilterBtn.addEventListener("click", async (e) => {
+  const cond = teamForm.querySelector("input").value;
+  const obj = await fetch_filter_data("team", cond);
+  const teamTable = allTables[2].querySelector("table tbody");
+  let html = ``;
+  for (let i = 0; i < obj["list"].length; i++) {
+    let newHtml = ``;
+    for (const j in obj["list"][i]) {
+      newHtml += `<td>${obj["list"][i][j]}</td>`;
+    }
+    html += `<tr>${newHtml} <td><button class="del-btn"><i class="fa-solid fa-trash trash-icon"></i></button></td></tr>`;
+  }
+  teamTable.innerHTML = html;
+  e.preventDefault();
+});
+
+taskFilterBtn.addEventListener("click", async (e) => {
+  const cond = taskForm.querySelector("input").value;
+  const obj = await fetch_filter_data("task", cond);
+  const taskTable = allTables[3].querySelector("table tbody");
+  let html = ``;
+  for (let i = 0; i < obj["list"].length; i++) {
+    let newHtml = ``;
+    for (const j in obj["list"][i]) {
+      newHtml += `<td>${obj["list"][i][j]}</td>`;
+    }
+    html += `<tr>${newHtml} <td><button class="del-btn"><i class="fa-solid fa-trash trash-icon"></i></button></td></tr>`;
+  }
+  taskTable.innerHTML = html;
   e.preventDefault();
 });
 
