@@ -36,34 +36,34 @@ CREATE TABLE Employee (
 -- Sample data for Project table
 INSERT INTO Project (Pid, Pname, startDate, endDate, Pdeadline)
 VALUES
-  (1, 'Software Upgrade Project', '2023-01-01', '2023-05-01', '2023-06-01'),
-  (2, 'Agile Transformation Initiative', '2023-02-15', '2023-07-15', '2023-08-31'),
+  (1, 'Software Upgrade Project', '2023-01-01', Null, '2023-06-01'),
+  (2, 'Agile Transformation Initiative', '2023-02-15', Null, '2023-08-31'),
   (3, 'Continuous Integration Implementation', '2023-04-01', '2023-08-31', '2023-10-15'),
   (4, 'Code Refactoring Sprint', '2023-05-15', '2023-10-15', '2023-11-30'),
   (5, 'Automated Testing Framework Development', '2023-07-01', '2023-11-30', '2024-01-15'),
   (6, 'DevOps Workflow Optimization', '2023-08-15', '2024-01-15', '2024-02-28'),
   (7, 'Cloud Migration Project', '2023-10-01', '2024-02-28', '2024-04-15'),
-  (8, 'User Authentication System Upgrade', '2023-11-15', '2024-04-15', '2024-05-31'),
+  (8, 'User Authentication System Upgrade', '2023-11-15', Null, '2024-05-31'),
   (9, 'Mobile App Performance Optimization', '2024-01-01', '2024-05-31', '2024-07-15'),
   (10, 'Data Encryption Implementation', '2024-02-15', '2024-07-15', '2024-08-31'),
   (11, 'Scalability Assessment and Enhancement', '2024-04-01', '2024-08-31', '2024-10-15'),
-  (12, 'Bug Tracking System Overhaul', '2024-05-15', '2024-10-15', '2024-11-30'),
+  (12, 'Bug Tracking System Overhaul', '2024-05-15', Null, '2024-11-30'),
   (13, 'Microservices Architecture Implementation', '2024-07-01', '2024-11-30', '2025-01-15'),
   (14, 'AI Integration for Predictive Analysis', '2024-08-15', '2025-01-15', '2025-02-28'),
   (15, 'Code Review Process Optimization', '2024-10-01', '2025-02-28', '2025-04-15'),
-  (16, 'Containerization for Deployment', '2024-11-15', '2025-04-15', '2025-05-31'),
+  (16, 'Containerization for Deployment', '2024-11-15', Null, '2025-05-31'),
   (17, 'Cross-Platform Compatibility Testing', '2025-01-01', '2025-05-31', '2025-07-15'),
   (18, 'Knowledge Transfer Workshops', '2025-02-15', '2025-07-15', '2025-08-31'),
   (19, 'API Documentation Standardization', '2025-04-01', '2025-08-31', '2025-10-15'),
   (20, 'Security Vulnerability Assessment', '2025-05-15', '2025-10-15', '2025-11-30'),
   (21, 'Agile Scrum Training Program', '2025-07-01', '2025-11-30', '2026-01-15'),
   (22, 'UI/UX Redesign Initiative', '2025-08-15', '2026-01-15', '2026-02-28'),
-  (23, 'Database Performance Tuning', '2026-01-01', '2026-02-28', '2026-04-15'),
+  (23, 'Database Performance Tuning', '2026-01-01', Null, '2026-04-15'),
   (24, 'Git Workflow Optimization', '2026-02-15', '2026-04-15', '2026-05-31'),
   (25, 'Automated Deployment Pipeline Setup', '2026-04-01', '2026-05-31', '2026-07-15'),
-  (26, 'AI-driven Chatbot Implementation', '2026-05-15', '2026-07-15', '2026-08-31'),
+  (26, 'AI-driven Chatbot Implementation', '2026-05-15', Null, '2026-08-31'),
   (27, 'Code Quality Metrics Implementation', '2026-07-01', '2026-08-31', '2026-10-15'),
-  (28, 'IT Security Awareness Program', '2026-08-15', '2026-10-15', '2026-11-30'),
+  (28, 'IT Security Awareness Program', '2026-08-15', Null, '2026-11-30'),
   (29, 'Container Orchestration Setup', '2026-10-01', '2026-11-30', '2027-01-15'),
   (30, 'Blockchain Integration Strategy', '2026-11-15', '2027-01-15', '2027-02-28');
 
@@ -168,4 +168,50 @@ VALUES
   (28, 'IT Security Awareness Program', '2025-12-15', 28, 8),
   (29, 'Container Orchestration Setup', '2026-01-31', 29, 9),
   (30, 'Blockchain Integration Strategy', '2026-02-28', 30, 3);
+
+
+-- Function to Project unfinished projects
+CREATE FUNCTION UnFinishedProjects()
+RETURNS @resultTable TABLE(
+    PID INT,
+    PName VARCHAR(50),
+    PDeadline DATE
+  )
+AS
+BEGIN
+  INSERT INTO @resultTable
+  SELECT Pid, Pname, Pdeadline
+  FROM Project
+  WHERE endDate is Null;
+
+  RETURN;
+END
+SELECT * FROM UnFinishedProjects();
+
+-- Function to Project the Projects have been finished
+CREATE FUNCTION FinishedProjects()
+RETURNS TABLE
+AS
+RETURN
+(
+  SELECT Pid, Pname, Pdeadline
+  FROM Project
+  WHERE endDate IS NOT NULL
+);
+SELECT * FROM FinishedProjects();
+
+-- Get the names of employees work on projectID
+SELECT Ename
+FROM Employee join Team ON EteamID = TMid
+join Task T ON Team.TMid = T.TKteamID
+WHERE projectID = 2;
+
+-- Project the project's id and name with the number of employees work on
+SELECT projectID, Project.Pname , COUNT(*) as NumberofEmp
+FROM
+Employee JOIN Team ON EteamID = Tmid
+JOIN Task ON TKteamID = TMid
+JOIN Project ON Pid = Task.projectID
+GROUP BY projectID, Project.Pname;
+
 
