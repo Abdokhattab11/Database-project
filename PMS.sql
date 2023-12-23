@@ -246,3 +246,38 @@ END;
 UPDATE Project
 SET endDate = '2023-07-15'
 WHERE Pid = 1;
+
+-- Transaction to transfer an employee from one team to another while ensuring data integrity
+CREATE PROCEDURE TransferEmployeeToTeam
+  @EmployeeID INT,
+  @NewTeamID INT
+AS
+BEGIN
+  BEGIN TRY
+    BEGIN TRANSACTION;
+
+    -- Retrieve current team ID of the employee
+    DECLARE @CurrentTeamID INT;
+    SELECT @CurrentTeamID = EteamID FROM Employee WHERE Eid = @EmployeeID;
+
+    -- Update the employee's team ID
+    UPDATE Employee
+    SET EteamID = @NewTeamID
+    WHERE Eid = @EmployeeID;
+
+    -- If everything is successful, commit the transaction
+    COMMIT;
+  END TRY
+  BEGIN CATCH
+    -- If an error occurs, rollback the transaction
+    ROLLBACK;
+
+    -- Optionally, raise or log the error
+    THROW;
+  END CATCH;
+END;
+
+-- Example: Transfer Employee with ID 1 to Team with ID 3
+EXEC TransferEmployeeToTeam
+  @EmployeeID = 1,
+  @NewTeamID = 3;
