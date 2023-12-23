@@ -203,11 +203,21 @@ SELECT * FROM FinishedProjects();
 
 DROP FUNCTION UnFinishedProjects;
 
--- Get the names of employees work on projectID
-SELECT Ename
-FROM Employee join Team ON EteamID = TMid
-join Task T ON Team.TMid = T.TKteamID
-WHERE projectID = 2;
+-- Stored procedure that selects the names of the employees working on a specific project
+CREATE PROCEDURE GetEmployeesForProject
+  @ProjectID INT
+AS
+BEGIN
+  SELECT DISTINCT E.Ename
+  FROM Employee E
+  JOIN Team ON E.EteamID = Team.TMid
+  JOIN Task T ON Team.TMid = T.TKteamID
+  WHERE T.projectID = @ProjectID;
+END;
+
+-- Example: Get employees' names working on the project with ID = 2
+EXEC GetEmployeesForProject @ProjectID = 2;
+
 
 -- Project the project's id and name with the number of employees work on
 SELECT projectID, Project.Pname , COUNT(*) as NumberofEmp
