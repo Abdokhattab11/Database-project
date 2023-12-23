@@ -200,7 +200,7 @@ RETURN
 );
 SELECT * FROM FinishedProjects();
 
--- Get the names of employees work on projectID
+-- Project the names of employees work on projectID
 SELECT Ename
 FROM Employee join Team ON EteamID = TMid
 join Task T ON Team.TMid = T.TKteamID
