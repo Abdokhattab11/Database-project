@@ -169,8 +169,7 @@ VALUES
   (29, 'Container Orchestration Setup', '2026-01-31', 29, 9),
   (30, 'Blockchain Integration Strategy', '2026-02-28', 30, 3);
 
-
--- Function to Project unfinished projects
+-- Function to get unfinished projects
 CREATE FUNCTION UnFinishedProjects()
 RETURNS @resultTable TABLE(
     PID INT,
@@ -186,7 +185,6 @@ BEGIN
 
   RETURN;
 END
-SELECT * FROM UnFinishedProjects();
 
 -- Function to Project the Projects have been finished
 CREATE FUNCTION FinishedProjects()
@@ -198,9 +196,14 @@ RETURN
   FROM Project
   WHERE endDate IS NOT NULL
 );
+
+
+SELECT * FROM UnFinishedProjects();
 SELECT * FROM FinishedProjects();
 
--- Project the names of employees work on projectID
+DROP FUNCTION UnFinishedProjects;
+
+-- Get the names of employees work on projectID
 SELECT Ename
 FROM Employee join Team ON EteamID = TMid
 join Task T ON Team.TMid = T.TKteamID
@@ -214,4 +217,22 @@ JOIN Task ON TKteamID = TMid
 JOIN Project ON Pid = Task.projectID
 GROUP BY projectID, Project.Pname;
 
+-- Trigger to Update Project Deadline
+CREATE TRIGGER UpdateProjectDeadline
+ON Project
+AFTER UPDATE
+AS
+BEGIN
+  IF UPDATE(endDate)
+  BEGIN
+    UPDATE p
+    SET p.Pdeadline = i.endDate
+    FROM Project p
+    INNER JOIN inserted i ON p.Pid = i.Pid;
+  END
+END;
 
+-- Updating the endDate of a project will automatically trigger the UpdateProjectDeadline trigger
+UPDATE Project
+SET endDate = '2023-07-15'
+WHERE Pid = 1;
