@@ -280,5 +280,3 @@ END;
 EXEC TransferEmployeeToTeam
   @Employeid = 1,
   @NewTeamID = 3;
-
---
